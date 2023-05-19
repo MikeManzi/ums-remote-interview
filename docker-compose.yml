@@ -3,12 +3,14 @@ services:
   backend:
     image: ums/backend
     container_name: ums_backend
+    network_mode: host
     restart: always
     build: ./backend
     ports:
       - 4000:4000
     depends_on:
       - db
+    env_file: ./backend/.env
   db:
     image: ums/postgres
     container_name: ums_db
