@@ -102,6 +102,7 @@ export const createUser = async (req: Request, res: Response) => {
             status: 201,
         })
     } catch (error: any) {
+        console.log("The error in creating a user: ", error)
         return API_RESPONSE(res, {
             success: false,
             message: "Internal server error",
