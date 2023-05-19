@@ -7,17 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 const headers: HeadersType[] = [
   {
-    label: "Names",
-    key: "names",
+    label: "First Name",
+    key: "firstName",
+  },
+  {
+    label: "Last Name",
+    key: "lastName",
   },
   {
     label: "Email Address",
     key: "email",
   },
-  {
-    label: "National ID",
-    key: "nationalId",
-  },
+  
   {
     label: "Status",
     key: "status",
@@ -35,7 +36,7 @@ export default function Users() {
   const {users} = useSelector((state:any)=>state.user)
   const dispatch = useDispatch();
 
-  const handleAction = (type: string, obj: any) => {
+  const handleAction = (type: string) => {
     if (type === "verify") {
       setView(true);
     }

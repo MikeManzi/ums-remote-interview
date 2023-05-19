@@ -63,7 +63,7 @@ export default function Table({ headers, data, handleAction }: TableProps) {
         <thead className="bg-green-50">
           <tr className="text-green-700 font-regular text-left">
             <th className="p-3 whitespace-nowrap">#</th>
-            {headers.map((header: HeadersType, i) => (
+            {headers.map((header: HeadersType, _i) => (
               <th key={header.key} className="p-3">
                 {header.label}
               </th>
