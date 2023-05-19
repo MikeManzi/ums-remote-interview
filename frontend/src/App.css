@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.custom-shadow{
+    box-shadow: 0px 16px 54px rgba(0, 0, 0, 0.06);
+}
