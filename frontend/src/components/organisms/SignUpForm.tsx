@@ -155,7 +155,7 @@ const SignUpForm: React.FC = () => {
               onChange={() => setMartialStatus("DIVORCED")}
             />
             <label htmlFor="" className="mt-2 ml-2 mr-8">
-              Married
+              Divorced
             </label>
             <Input
               type="radio"
@@ -164,7 +164,7 @@ const SignUpForm: React.FC = () => {
               onChange={() => setMartialStatus("WIDOWED")}
             />
             <label htmlFor="" className="ml-2 mt-2">
-              Single
+              Widowed
             </label>
           </div>
         </div>
