@@ -4,7 +4,7 @@ services:
     image: ums/backend
     container_name: ums_backend
     restart: always
-    build: .
+    build: ./backend
     ports:
       - 4000:4000
     depends_on:
@@ -14,6 +14,12 @@ services:
     container_name: ums_db
     network_mode: host
     restart: always
-    build: ./src/db
+    build: ./backend/src/db
     ports:
       - 5432:5432
+
+  frontend:
+    image: ums/frontend
+    build: ./frontend
+    ports: 
+      - '80:3000'
