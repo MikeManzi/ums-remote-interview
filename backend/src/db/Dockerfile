@@ -1,0 +1,9 @@
+FROM postgres:15.2-alpine
+
+ENV POSTGRES_USER postgres
+
+ENV POSTGRES_PASSWORD Rich378
+
+ENV POSTGRES_DB ums
+
+EXPOSE 5432
