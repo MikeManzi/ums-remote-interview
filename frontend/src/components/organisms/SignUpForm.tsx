@@ -136,7 +136,7 @@ const SignUpForm: React.FC = () => {
               value="married"
               onChange={() => setMartialStatus("MARRIED")}
             />
-            <label htmlFor="" className="mt-2 ml-2 mr-8">
+            <label htmlFor="" className="mt-2 ml-2 mr-4">
               Married
             </label>
             <Input
@@ -145,7 +145,7 @@ const SignUpForm: React.FC = () => {
               value="single"
               onChange={() => setMartialStatus("SINGLE")}
             />
-            <label htmlFor="" className="ml-2 mt-2">
+            <label htmlFor="" className="ml-2 mt-2 mr-4">
               Single
             </label>
             <Input
@@ -154,7 +154,7 @@ const SignUpForm: React.FC = () => {
               value="divorced"
               onChange={() => setMartialStatus("DIVORCED")}
             />
-            <label htmlFor="" className="mt-2 ml-2 mr-8">
+            <label htmlFor="" className="mt-2 ml-2 mr-4">
               Divorced
             </label>
             <Input
