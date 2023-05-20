@@ -8,11 +8,13 @@ export interface UserState {
     accessToken: string;
   };
   users: User[];
+  request: User | null
 }
 
 const initialState: UserState = {
   currentUser: { user: null, accessToken: "" },
   users: [],
+  request: null
 };
 
 export const userSlice = createSlice({
@@ -33,10 +35,13 @@ export const userSlice = createSlice({
       state.currentUser = { user: null, accessToken: "" };
       localStorage.removeItem("accessToken");
     },
+    setRequest: (state, action: PayloadAction<any>) => {
+      state.request = {...action.payload}
+    }
   },
 });
 
-export const { setCurrentUser, setUsers, logout, setStatusToPending } =
+export const { setCurrentUser, setUsers, logout, setStatusToPending, setRequest } =
   userSlice.actions;
 
 export default userSlice.reducer;

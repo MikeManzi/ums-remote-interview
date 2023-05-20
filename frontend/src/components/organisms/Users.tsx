@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Table, { HeadersType } from "./Table";
-import { getAllUsers } from "../../services"
-import { setUsers } from "../../store/reducers/userSlice"
+import { getAllUsers, getRequestById } from "../../services"
+import { setUsers, setRequest } from "../../store/reducers/userSlice"
 import ViewRequest from "./ViewRequest";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,12 +33,17 @@ const headers: HeadersType[] = [
 export default function Users() {
   const [view, setView] = useState<boolean>(false);
 
-  const {users} = useSelector((state:any)=>state.user)
+  const {users, request} = useSelector((state:any)=>state.user)
   const dispatch = useDispatch();
 
-  const handleAction = (type: string) => {
+  const handleAction = (type: string, row: any) => {
     if (type === "verify") {
-      setView(true);
+      getRequestById(row.id)
+        .then((res) => {
+          // console.log("Here's the res", res.data.data)
+          dispatch(setRequest(res.data.data))
+          setView(true);
+        })
     }
   };
   
@@ -55,7 +60,7 @@ export default function Users() {
   return (
     <div>
       {view ? (
-        <ViewRequest setView={setView} />
+        <ViewRequest setView={setView} request={request}/>
       ) : (
         <div className="mt-10">
           <div className="font-bold text-xl mb-5">Users</div>
