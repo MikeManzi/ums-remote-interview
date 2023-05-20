@@ -88,7 +88,7 @@ export default function Table({ headers, data, handleAction }: TableProps) {
                     </div>
                     <SubMenu
                       verify={
-                        row["status"] === "UNVERIFIED"
+                        row["status"] === "PENDING VERIFICATION"
                           ? () => handleAction("verify", row)
                           : false
                       }

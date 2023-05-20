@@ -26,6 +26,10 @@ const SignUpForm: React.FC = () => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
@@ -66,6 +70,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setFirstName(e.target.value)
             }
+            required
           />
         </div>
         <div className="mt-4">
@@ -78,6 +83,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setLastName(e.target.value)
             }
+            required
           />
         </div>
         <div className="mt-4">
@@ -90,6 +96,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
+            required
           />
         </div>
         <div className="mt-4">
@@ -125,6 +132,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setDob(e.target.value)
             }
+            required
           />
         </div>
         <div className="mt-4">
@@ -186,6 +194,7 @@ const SignUpForm: React.FC = () => {
               name="image"
               className="opacity-0 absolute overflow-hidden -z-1"
               onChange={handleFileChange}
+              required
             />
             <div className="ml-2 text-sm text-green-700 font-medium">
               Upload profile image
@@ -202,6 +211,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
+            required
           />
         </div>
         <div className="my-4">
@@ -214,6 +224,7 @@ const SignUpForm: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setConfirmPassword(e.target.value)
             }
+            required
           />
         </div>
 

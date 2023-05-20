@@ -210,12 +210,16 @@ const SelectInput: React.FC<SelectInputProps> = ({
   onChange,
 }) => {
   return (
-    <select value={selectedCountry} onChange={onChange}>
-      {countries.map((country) => (
-        <option key={country} value={country}>
-          {country}
-        </option>
-      ))}
+    <select 
+      value={selectedCountry} 
+      onChange={onChange} 
+      required
+      className="border-2 border-gray-400 w-full border-opacity-25 block outline-none p-2 max-w-sm rounded-lg mt-2">
+        {countries.map((country) => (
+          <option key={country} value={country}>
+            {country}
+          </option>
+        ))}
     </select>
   );
 };
