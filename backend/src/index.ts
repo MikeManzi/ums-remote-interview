@@ -9,7 +9,9 @@ import userRouter from "./routes/user.route"
 
 const app = express()
 
-app.use(cors({ origin: "*" }))
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
