@@ -5,6 +5,7 @@ import swaggerConfig from "../swagger.json"
 import cors from "cors"
 import path from "path"
 import { connectDB } from "./db/config"
+import { createAdminUser } from "./db/seeds/createAdmin"
 import userRouter from "./routes/user.route"
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 connectDB()
+createAdminUser()
 
 app.use(
     "/api-docs",
