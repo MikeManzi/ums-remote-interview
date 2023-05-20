@@ -400,7 +400,7 @@ export const viewVerificationRequest = async (req: Request, res: Response) => {
     try {
         const request = await UserDocument.findOne({
             where: {
-                id: req.params.id,
+                userId: req.params.id,
             },
         })
 
