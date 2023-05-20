@@ -12,6 +12,15 @@ npm i
 ```
 npm run dev
 ```
+- Background context
+```
+ - When running the backend, an admin user will be created with  these credentials
+      email: "admin@example.com",
+      password: "Admin@123"
+ - Before that, change the email of the admin so that 2FA works
+ ```
+ 
+
 - Install dependencies for frontend
 ```
 cd ../frontend
