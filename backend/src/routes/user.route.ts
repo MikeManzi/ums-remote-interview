@@ -9,7 +9,6 @@ import {
     requestVerification, 
     verifyAccount,
     viewVerificationRequest,
-    getUserProfile,
     uploadImage,
     verifyOTP
 } from "../controllers/user.controller"
@@ -29,6 +28,5 @@ userRouter.post("/reset-password/:resetToken", resetPassword)
 userRouter.post("/request-verification",[authenticate, uploadImage], requestVerification)
 userRouter.get("/view-request/:id",[authenticate, authorize(Role.Admin)], viewVerificationRequest)
 userRouter.put("/verify-account/:id", [authenticate, authorize(Role.Admin)], verifyAccount)
-userRouter.get("/profile", authenticate, getUserProfile)
 
 export default userRouter

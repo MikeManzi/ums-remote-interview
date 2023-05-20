@@ -58,7 +58,3 @@ export const getAllUsers = async () => {
   return result;
 };
 
-export const getProfile = async () => {
-  const result = await axios.get("/users/profile");
-  return result;
-};
