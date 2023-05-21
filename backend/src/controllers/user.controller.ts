@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { IRequest } from "../utils/types"
-import { generateResetToken, hashPassword } from "../utils/passwords"
+import { generateResetToken, hashPassword, validatePassword } from "../utils/passwords"
 import Paginator from "../utils/pagination"
 import User from "../models/User"
 import { Status } from "../enums/user.enum"
@@ -68,6 +68,14 @@ export const createUser = async (req: Request, res: Response) => {
 
     const { email, firstName, lastName, gender, dateOfBirth, maritalStatus, nationality, status } = req.body
     const profile = req.file!.filename;
+    const isPasswordValid = validatePassword(req.body.password);
+    if (!isPasswordValid) {
+        return API_RESPONSE(res, {
+            success: false,
+            message: "Invalid password. Please make sure your password is at least 8 characters long, contains at least one uppercase letter, and one special character.",
+            status: 400,
+        });
+    }
     try {
         const userExists: User | null = await findUserByEmail(email)
 

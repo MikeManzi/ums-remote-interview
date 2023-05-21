@@ -1,5 +1,6 @@
 import User from "../../models/User";
 import { Status, Gender, Role, MaritalStatus } from "../../enums/user.enum";
+import { hashPassword } from "../../utils/passwords";
 
 export const createAdminUser = async () => {
   try {
@@ -21,7 +22,7 @@ export const createAdminUser = async () => {
       status: Status.Verified,
       profile: "admin.png",
       email: "admin@example.com",
-      password: "Admin@123",
+      password: await hashPassword("Admin@123"),
       role: Role.Admin,
     });
 
