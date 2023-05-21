@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FormContainer from "../molecules/FormContainer";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
@@ -11,23 +11,24 @@ import SelectInput from "../atoms/SelectInput";
 import attach from "../../assets/attach.svg";
 
 const SignUpForm: React.FC = () => {
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
-  const [firstName, setFirstName] = React.useState<string>("");
-  const [lastName, setLastName] = React.useState<string>("");
-  const [gender, setGender] = React.useState<string>("");
-  const [dob, setDob] = React.useState<string>("");
-  const [martialStatus, setMartialStatus] = React.useState<string>("");
-  const [nationality, setNationality] = React.useState<string>("");
-  const [image, setImage] = React.useState<any>();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [dob, setDob] = useState<string>("");
+  const [martialStatus, setMartialStatus] = useState<string>("");
+  const [nationality, setNationality] = useState<string>("");
+  const [image, setImage] = useState<any>();
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      setErrorMessage("Passwords do not match");
       return;
     }
     const formData = new FormData();
@@ -44,7 +45,9 @@ const SignUpForm: React.FC = () => {
       .then(() => {
         navigate("/sign-in");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErrorMessage(err.response.data.message);
+      });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +56,16 @@ const SignUpForm: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    let timer: number;
+    if (errorMessage) {
+      timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [errorMessage]);
+
   return (
     <FormContainer>
       <Title>Sign Up</Title>
@@ -60,6 +73,11 @@ const SignUpForm: React.FC = () => {
         Already have an account? <LinkText to="/sign-in">Login</LinkText>
       </SubTitle>
       <form className="mt-8 relative" onSubmit={handleSubmit}>
+        {errorMessage && (
+          <div className="absolute top-0 left-0 w-full bg-red-200 p-2 text-red-800 text-center">
+            {errorMessage}
+          </div>
+        )}
         <div>
           <label className="font-medium">First name</label>
           <Input
@@ -188,7 +206,7 @@ const SignUpForm: React.FC = () => {
         <div className="mt-4">
           <label className="font-medium">Profile image</label>
           <div className="rounded-lg border-2 border-green-700 flex items-center p-2 mt-2">
-            <img src={attach} />
+            <img src={attach} alt="Attach" />
             <input
               type="file"
               name="image"
@@ -227,7 +245,6 @@ const SignUpForm: React.FC = () => {
             required
           />
         </div>
-
         <Button type="submit">Sign Up</Button>
       </form>
     </FormContainer>
