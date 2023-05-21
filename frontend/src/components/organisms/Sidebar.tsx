@@ -3,7 +3,7 @@ import users from "../../assets/users.svg";
 export default function Sidebar() {
   return (
     <div
-      className="bg-green-50 md:w-1/5 w-1/2 h-full fixed md:relative z-20 hidden md:block"
+      className="bg-green-50 md:w-1/5 w-1/2 h-screen fixed md:relative z-20 hidden md:block"
       id="sidebar"
     >
       <div className="text-sm mt-44">

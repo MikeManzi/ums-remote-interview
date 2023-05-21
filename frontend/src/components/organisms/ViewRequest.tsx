@@ -3,21 +3,26 @@ import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { verifyAccount } from "../../services";
-import { setRequest } from "../../store/reducers/userSlice";
+import { changeToVerified, setRequest } from "../../store/reducers/userSlice";
 
-export default function ViewRequest({ setView, request }: { setView: any, request: any }) {
-  const navigate = useNavigate();
+export default function ViewRequest({
+  setView,
+  request,
+}: {
+  setView: any;
+  request: any;
+}) {
   const dispatch = useDispatch();
 
   const handleVerify = (id: string) => {
     verifyAccount(id)
       .then((_res) => {
-        dispatch(setRequest(null))
-        setView(false)
-        navigate("/dashboard")
+        dispatch(setRequest(null));
+        dispatch(changeToVerified(_res.data.data.id));
+        setView(false);
       })
       .catch((err) => console.log(err));
-  }
+  };
   return (
     <div className="mt-4 max-w-md p-10 mx-auto bg-white shadow-xl shadow-neutral-100 flex flex-col">
       <div className="flex justify-between items-center">
@@ -45,7 +50,9 @@ export default function ViewRequest({ setView, request }: { setView: any, reques
           <Button type="button" cancel>
             Reject verification
           </Button>
-          <Button type="button" onClick={handleVerify(request.userId)}>Verify Account</Button>
+          <Button type="button" onClick={() => handleVerify(request.userId)}>
+            Verify Account
+          </Button>
         </div>
       </form>
     </div>
